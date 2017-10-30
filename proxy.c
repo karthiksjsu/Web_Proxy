@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
   char msg[LEN_MSG];
   struct sockaddr_in serv_addr, cli_addr;
   int n, flag, i, pid;
-
+  char *first;
   /* Command line arguments */
   if(argc < 2)
   {
@@ -60,29 +60,25 @@ int main(int argc, char *argv[])
     /* if connection is established, get request */
     bzero(buffer, LEN_BUF);
     bzero(msg, LEN_MSG);
-    printf("\nMessage:\n");
+    printf("\nMessage read from web client :\n");
     flag = 0;
-    while( (n = read(newsockfd, buffer, LEN_BUF-1)) > 0)
-    {
-      printf("%s", buffer);
-      strcat(msg, buffer);
-      /* check for \n\n */
-      for(i = 0; i < strlen(msg); i++)
+     while( (n = read(newsockfd, buffer, LEN_BUF)) > 0)
       {
-        if(msg[i] == '\r')
-        {
-          if(msg[i+1] == '\n' && msg[i+2] == '\r' && msg[i+3] == '\n')
-          {
-            printf("\nHTTP Request accepted\n");
-            flag = 1;
-            break;
-          }
-        }
-      }
-      if(flag == 1)
-        break;
-    }
+      strcat(msg, buffer);
+      printf("%s",msg);
+      printf("here\n");
+      first=strtok(msg," /t/n");
 
+
+     printf("HTTP Request type is :%s",first);
+     if ((strcmp(first,"GET\0")) ==0)
+      {
+
+      flag =1;
+        break;
+     
+      }
+      }
     /* Send HTTP Request to server */
     if(flag == 1)
     {

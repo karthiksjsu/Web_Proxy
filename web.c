@@ -16,7 +16,7 @@ int web_connect(char req[], int writesock)
   {
     if(req[i] == 'H' && req[i+1] == 'o' && req[i+2] == 's' && req[i+3] == 't')
     {
-      for(j=i+6; req[j] != '\r'; j++)
+      for(j=i+6; req[j] != ':'; j++)
       {
         hoststring[j-i-6] = req[j];
       }
