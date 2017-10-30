@@ -6,7 +6,7 @@
 #include <netinet/in.h>
 #include <netdb.h>
 #include <unistd.h>
-#define LEN_BUF 256
+#define LEN_BUF 1000
 #define LEN_MSG 5000
 
 

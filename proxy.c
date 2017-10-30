@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
   /*initialize socket structure*/
   bzero((char *) &serv_addr, sizeof(serv_addr)); /* set serv_addr to zeros*/
   portno = atoi(argv[1]);
-  printf("Starting proxy on %d\n", portno);
+  printf("Starting proxy on port %d\n", portno);
   serv_addr.sin_family = AF_INET;
   serv_addr.sin_addr.s_addr = INADDR_ANY;
   serv_addr.sin_port = htons(portno);
@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
   /* start listening for clients */
   listen(sockfd, 5);
   clilen = sizeof(cli_addr);
-  printf("Proxy running...\nHave fun ! - kh\n");
+  printf("Proxy running....\n");
 
   /* accept actual connection from client */
   while(1)
@@ -66,11 +66,10 @@ int main(int argc, char *argv[])
       {
       strcat(msg, buffer);
       printf("%s",msg);
-      printf("here\n");
       first=strtok(msg," /t/n");
 
 
-     printf("HTTP Request type is :%s",first);
+     printf("\nHTTP Request type is:%s",first);
      if ((strcmp(first,"GET\0")) ==0)
       {
 
