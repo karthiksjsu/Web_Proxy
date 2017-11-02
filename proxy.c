@@ -66,7 +66,7 @@ int main(int argc, char *argv[])
       {
       strcat(msg, buffer);
       printf("%s",msg);
-      first=strtok(msg," /t/n");
+      first=strtok(buffer," /t/n");
 
 
      printf("\nHTTP Request type is:%s",first);
